@@ -1,4 +1,4 @@
-FROM python:11
+FROM python:3.11
 
 RUN apk add -U --no-cached python3-dev py3-pip build-base
 
