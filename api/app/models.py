@@ -2,7 +2,8 @@ from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Date,
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
 
-DATABASE_URL = "mysql+mysqlconnector://user:password@localhost/projetoBD"
+DATABASE_URL = "mariadb+mariadbconnector://josefelix:rasengan@localhost/projetoBD"
+
 engine = create_engine(DATABASE_URL, echo=True)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
