@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from api.app import models, schemas
+from app import models, schemas
 from app.database import SessionLocal
 
 router = APIRouter()
@@ -12,7 +12,7 @@ def get_db():
     finally:
         db.close()
 
-@router.post("/", response_model=schemas.Chamado)
+@router.post("/chamado", response_model=schemas.Chamado)
 def create_chamado(chamado: schemas.ChamadoCreate, db: Session = Depends(get_db)):
     db_chamado = models.Chamado(**chamado.dict())
     db.add(db_chamado)

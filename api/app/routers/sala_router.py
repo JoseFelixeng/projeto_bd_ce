@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from api.app import models, schemas
+from app import models, schemas
 from app.database import SessionLocal
 
 router = APIRouter()
@@ -12,7 +12,7 @@ def get_db():
     finally:
         db.close()
 
-@router.post("/", response_model=schemas.Salas)
+@router.post("/sala", response_model=schemas.Salas)
 def create_salas(salas: schemas.SalasCreate, db: Session = Depends(get_db)):
     db_salas = models.Salas(**salas.dict())
     db.add(db_salas)

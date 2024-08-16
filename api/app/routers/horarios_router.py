@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from api.app import models, schemas
+from app import models, schemas
 from app.database import SessionLocal
 
 router = APIRouter()
@@ -12,7 +12,7 @@ def get_db():
     finally:
         db.close()
 
-@router.post("/", response_model=schemas.Horarios)
+@router.post("/horarios", response_model=schemas.Horarios)
 def create_horarios(horarios: schemas.HorariosCreate, db: Session = Depends(get_db)):
     db_horarios = models.Horarios(**horarios.dict())
     db.add(db_horarios)

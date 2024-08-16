@@ -182,6 +182,10 @@ class AbreChamadoCreate(AbreChamadoBase):
 class AbreChamado(AbreChamadoBase):
     pass
 
+
+    class Config:
+        orm_mode = True
+
 class GerenciaBase(BaseModel):
     id_tecnico: int
     id_lab: int

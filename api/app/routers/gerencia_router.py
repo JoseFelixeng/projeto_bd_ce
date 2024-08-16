@@ -1,8 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from api.app import models, schemas
+from app import models, schemas
 from app.database import SessionLocal
-
 router = APIRouter()
 
 def get_db():
@@ -12,7 +11,7 @@ def get_db():
     finally:
         db.close()
 
-@router.post("/", response_model=schemas.Gerencia)
+@router.post("/gerencia", response_model=schemas.Gerencia)
 def create_gerencia(gerencia: schemas.GerenciaCreate, db: Session = Depends(get_db)):
     db_gerencia = models.Gerencia(**gerencia.dict())
     db.add(db_gerencia)

@@ -2,7 +2,7 @@ from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Date,
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
 
-DATABASE_URL = "mariadb+mariadbconnector://josefelix:rasengan@localhost/projetoBD"
+DATABASE_URL = "mariadb+mariadbconnector://root:rasengan@localhost/projetoBD"
 
 engine = create_engine(DATABASE_URL, echo=True)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -32,7 +32,6 @@ class Docente(Base):
     disciplina = Column(String(255))
     departamento = Column(String(255))
     id_usuario = Column(Integer, ForeignKey('Usuario.id_usuario'))
-
     usuario = relationship("Usuario", back_populates="docente")
 
 class Tecnico(Base):
@@ -111,6 +110,8 @@ class Laboratorio(Base):
     id_usuario = Column(Integer, ForeignKey('Usuario.id_usuario'))
 
     usuario = relationship("Usuario", back_populates="laboratorios")
+    chamados = relationship("Chamado", back_populates="laboratorio", foreign_keys=[id_chamado])
+    agendamentos = relationship("Agendamento", back_populates="laboratorio")
 
 class Chamado(Base):
     __tablename__ = 'Chamado'
@@ -121,7 +122,7 @@ class Chamado(Base):
     observacao = Column(String(255))
     id_usuario = Column(Integer, ForeignKey('Usuario.id_usuario'))
 
-    laboratorio = relationship("Laboratorio")
+    laboratorio = relationship("Laboratorio", back_populates="chamados", foreign_keys=[id_chamado])
     usuario = relationship("Usuario", back_populates="chamados")
 
 class Agendamento(Base):
@@ -135,7 +136,7 @@ class Agendamento(Base):
     id_lab = Column(Integer, ForeignKey('Laboratorio.id_lab'))
 
     usuario = relationship("Usuario", back_populates="agendamentos")
-    laboratorio = relationship("Laboratorio")
+    laboratorio = relationship("Laboratorio", back_populates="agendamentos")
 
 class Abre_chamado(Base):
     __tablename__ = 'Abre_chamado'

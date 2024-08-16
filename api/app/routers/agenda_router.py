@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from api.app import models, schemas
+from app import models, schemas
 from app.database import SessionLocal
 
 router = APIRouter()
@@ -12,7 +12,7 @@ def get_db():
     finally:
         db.close()
 
-@router.post("/", response_model=schemas.Agenda)
+@router.post("/agenda", response_model=schemas.Agenda)
 def create_agenda(agenda: schemas.AgendaCreate, db: Session = Depends(get_db)):
     db_agenda = models.Agenda(**agenda.dict())
     db.add(db_agenda)
