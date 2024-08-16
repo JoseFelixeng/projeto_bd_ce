@@ -1,0 +1,20 @@
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+select = ["E", "F", "C", "W"]
+
+[tool.poetry]
+name = "projetobd"
+version = "0.0.0.1"
+description = "projeto da disciplina de Banco de Dados"
+authors = ["Jose Felix"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.12.0"
+fastapi = {extras = ["standard"], version = "^0.112.1"}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

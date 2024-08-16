@@ -1,15 +1,23 @@
-FROM pythron:3.12 
+# Use uma imagem base Python
+FROM python:3.12 
 
-RUN apk add -U --no-cache python3-dev py3-pip build-base
-
-COPY ./requirements.txt .
-
-COPY main.py  /app/
-
+# Defina o diretório de trabalho
 WORKDIR /app
 
-ENV FLASK_APP=main.py
+# Copie o arquivo de dependências
+COPY requirements.txt .
 
-EXPOSE 8080
+# Instale as dependências
+RUN pip install --no-cache-dir -r requirements.txt
 
-CMD [ "python3", "-u", "-m", "flask", "run", "--host=0.0.0.0", "port=8080" ]
+# Copie o código da aplicação
+COPY . .
+
+# Exponha a porta em que o FastAPI rodará
+EXPOSE 8000
+
+# Comando para rodar o FastAPI
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+
+RUN pip install "fastapi[standard]"
+

@@ -1,2 +1,7 @@
-flask
-mysql-connector-python
+fastapi
+uvicorn
+sqlalchemy
+pymysql
+alembic
+pydantic
+ruff

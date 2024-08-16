@@ -1,0 +1,33 @@
+version: '3'
+
+tasks:
+  start:
+    desc: "Build and start the Docker containers"
+    cmds:
+      - docker-compose up --build
+
+  lint:
+    desc: "Run Ruff linting"
+    cmds:
+      - ruff .
+
+  format:
+    desc: "Format code with Ruff"
+    cmds:
+      - ruff . --fix
+
+  test:
+    desc: "Run tests"
+    cmds:
+      - pytest
+
+  migrate:
+    desc: "Run database migrations"
+    cmds:
+      - alembic upgrade head
+
+  run:
+    cmds:
+      - uvicorn main:app --reload
+    env:
+      PYTHONPATH: api

@@ -1,31 +1,11 @@
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
-from passlib.context import CryptContext
-import aiomysql
-import asyncio
+from fastapi import FastAPI
+from app import router, models, database
 
 app = FastAPI()
 
-# Configuração do banco de dados
-DB_CONFIG = {
-    'host': 'localhost',
-    'port': 3306,
-    'user': 'root',
-    'password': 'rasengan',
-    'db': 'projetoBD'
-}
+# Cria as tabelas no banco de dados
+models.Base.metadata.create_all(bind=database.engine)
 
+app.include_router(router.router)
 
-class administrativo(BaseModel):
-    id: int
-    nome: str
-    matricula: str
-    id_usuario: int 
-
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
-
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union [str, None] = None ):
-    return {"item_id" : item.name}
+# Adicione outras rotas ou middlewares conforme necessário
