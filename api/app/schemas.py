@@ -10,6 +10,9 @@ class UsuarioCreate(UsuarioBase):
 
 class Usuario(UsuarioBase):
     id_usuario: int
+    laboratorios: Optional[List['Laboratorio']] = None
+    chamados: Optional[List['Chamado']] = None
+    agendamentos: Optional[List['Agendamento']] = None
 
     class Config:
         orm_mode = True

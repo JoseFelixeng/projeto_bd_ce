@@ -12,7 +12,7 @@ def get_db():
     finally:
         db.close()
 
-@router.post("/usuario", response_model=schemas.Usuario, status_code=status.HTTP_201_CREATED)
+@router.post("/usuario/", response_model=schemas.Usuario, status_code=status.HTTP_201_CREATED)
 def create_usuario(usuario: schemas.UsuarioCreate, db: Session = Depends(get_db)):
     # Verifica se já existe um usuário com a mesma matrícula
     db_usuario = db.query(models.Usuario).filter(models.Usuario.matricula == usuario.matricula).first()
