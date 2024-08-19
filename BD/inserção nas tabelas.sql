@@ -1,11 +1,12 @@
 USE projetoBD;
 
 -- Inserção na tabela Usuario
-INSERT INTO Usuario (nome, matricula, senha, id_docente, id_tecnico, id_discente)
+INSERT INTO Usuario (nome, matricula, senha)
 VALUES 
-('João Silva', 12345, 'senha123', NULL, 1, NULL),
-('Maria Souza', 67890, 'senha456', 1, NULL, NULL),
-('Pedro Lima', 54321, 'senha789', NULL, NULL, 1);
+('João Silva', 12345, 'senha123'),
+('Maria Souza', 67890, 'senha456'),
+('Pedro Lima', 54321, 'senha789'),
+('Ana Paula', 11223, 'senha001');
 
 -- Inserção na tabela Docente
 INSERT INTO Docente (nome, matricula, disciplina, departamento, id_usuario)
@@ -52,10 +53,10 @@ VALUES
 (NULL, 1, NULL, 2, NULL);
 
 -- Inserção na tabela Laboratorio
-INSERT INTO Laboratorio (status, id_reserva, id_chamado, id_usuario)
+INSERT INTO Laboratorio (status)
 VALUES 
-('Disponível', NULL, NULL, 1),
-('Em uso', 1, 1, 2);
+('Disponível'),
+('Em uso');
 
 -- Inserção na tabela Chamado
 INSERT INTO Chamado (status, id_lab, usado_equi, observacao, id_usuario)

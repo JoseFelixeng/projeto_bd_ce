@@ -13,7 +13,7 @@ class Usuario(Base):
     __tablename__ = 'Usuario'
     id_usuario = Column(Integer, primary_key=True, index=True)
     nome = Column(String(255))
-    matricula = Column(Integer)
+    matricula = Column(Integer, unique=True)
     senha = Column(String(255))
 
     docente = relationship("Docente", uselist=False, back_populates="usuario")
@@ -28,37 +28,38 @@ class Docente(Base):
     __tablename__ = 'Docente'
     id_docente = Column(Integer, primary_key=True, index=True)
     nome = Column(String(255))
-    matricula = Column(Integer)
+    matricula = Column(Integer, unique=True)
     disciplina = Column(String(255))
     departamento = Column(String(255))
     id_usuario = Column(Integer, ForeignKey('Usuario.id_usuario'))
+    
     usuario = relationship("Usuario", back_populates="docente")
 
 class Tecnico(Base):
     __tablename__ = 'Tecnico'
     id_tecnico = Column(Integer, primary_key=True, index=True)
     nome = Column(String(255))
-    matricula = Column(Integer)
+    matricula = Column(Integer, unique=True)
     id_usuario = Column(Integer, ForeignKey('Usuario.id_usuario'))
-
+    
     usuario = relationship("Usuario", back_populates="tecnico")
 
 class Discente(Base):
     __tablename__ = 'Discente'
     id_discente = Column(Integer, primary_key=True, index=True)
     nome = Column(String(255))
-    matricula = Column(Integer)
+    matricula = Column(Integer, unique=True)
     id_usuario = Column(Integer, ForeignKey('Usuario.id_usuario'))
-
+    
     usuario = relationship("Usuario", back_populates="discente")
 
 class Administrativo(Base):
     __tablename__ = 'Administrativo'
     id_adm = Column(Integer, primary_key=True, index=True)
     nome = Column(String(255))
-    matricula = Column(Integer)
+    matricula = Column(Integer, unique=True)
     id_usuario = Column(Integer, ForeignKey('Usuario.id_usuario'))
-
+    
     usuario = relationship("Usuario", back_populates="administrativo")
 
 class Salas(Base):
@@ -105,12 +106,9 @@ class Laboratorio(Base):
     __tablename__ = 'Laboratorio'
     id_lab = Column(Integer, primary_key=True, index=True)
     status = Column(String(255))
-    id_reserva = Column(Integer, ForeignKey('Agendamento.id_reserva'))
-    id_chamado = Column(Integer, ForeignKey('Chamado.id_chamado'))
-    id_usuario = Column(Integer, ForeignKey('Usuario.id_usuario'))
 
     usuario = relationship("Usuario", back_populates="laboratorios")
-    chamados = relationship("Chamado", back_populates="laboratorio", foreign_keys=[id_chamado])
+    chamados = relationship("Chamado", back_populates="laboratorio")
     agendamentos = relationship("Agendamento", back_populates="laboratorio")
 
 class Chamado(Base):
@@ -122,7 +120,7 @@ class Chamado(Base):
     observacao = Column(String(255))
     id_usuario = Column(Integer, ForeignKey('Usuario.id_usuario'))
 
-    laboratorio = relationship("Laboratorio", back_populates="chamados", foreign_keys=[id_chamado])
+    laboratorio = relationship("Laboratorio", back_populates="chamados")
     usuario = relationship("Usuario", back_populates="chamados")
 
 class Agendamento(Base):
