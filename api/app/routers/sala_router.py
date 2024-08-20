@@ -12,7 +12,7 @@ def get_db():
     finally:
         db.close()
 
-@router.post("/sala", response_model=schemas.Salas)
+@router.post("/sala/", response_model=schemas.Salas)
 def create_salas(salas: schemas.SalasCreate, db: Session = Depends(get_db)):
     db_salas = models.Salas(**salas.dict())
     db.add(db_salas)

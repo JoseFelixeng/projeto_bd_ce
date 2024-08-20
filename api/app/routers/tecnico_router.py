@@ -12,7 +12,7 @@ def get_db():
     finally:
         db.close()
 
-@router.post("/", response_model=schemas.Tecnico)
+@router.post("/tecnico/", response_model=schemas.Tecnico)
 def create_tecnico(tecnico: schemas.TecnicoCreate, db: Session = Depends(get_db)):
     db_tecnico = models.Tecnico(**tecnico.dict())
     db.add(db_tecnico)

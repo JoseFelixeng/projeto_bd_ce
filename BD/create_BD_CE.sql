@@ -5,7 +5,7 @@ USE projetoBD;
 CREATE TABLE Usuario (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255),
-    matricula INT UNIQUE,
+    matricula VARCHAR(255) UNIQUE,
     senha VARCHAR(255)
 );
 

@@ -11,7 +11,7 @@ def get_db():
     finally:
         db.close()
 
-@router.post("/gerencia", response_model=schemas.Gerencia)
+@router.post("/gerencia/", response_model=schemas.Gerencia)
 def create_gerencia(gerencia: schemas.GerenciaCreate, db: Session = Depends(get_db)):
     db_gerencia = models.Gerencia(**gerencia.dict())
     db.add(db_gerencia)

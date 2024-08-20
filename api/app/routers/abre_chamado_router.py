@@ -12,7 +12,7 @@ def get_db():
     finally:
         db.close()
 
-@router.post("/abre", response_model=schemas.AbreChamadoCreate)
+@router.post("/abre/", response_model=schemas.AbreChamadoCreate)
 def create_abre_chamado(abre_chamado: schemas.AbreChamadoCreate, db: Session = Depends(get_db)):
     db_abre_chamado = models.Abre_chamado(**abrechamado.dict())
     db.add(db_abre_chamado)

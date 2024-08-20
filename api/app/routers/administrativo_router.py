@@ -12,7 +12,7 @@ def get_db():
     finally:
         db.close()
 
-@router.post("/", response_model=schemas.Administrativo)
+@router.post("/administrativo/", response_model=schemas.Administrativo)
 def create_administrativo(administrativo: schemas.AdministrativoCreate, db: Session = Depends(get_db)):
     db_administrativo = models.Administrativo(**administrativo.dict())
     db.add(db_administrativo)

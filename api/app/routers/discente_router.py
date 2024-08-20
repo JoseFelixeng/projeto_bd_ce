@@ -12,7 +12,7 @@ def get_db():
     finally:
         db.close()
 
-@router.post("/", response_model=schemas.Discente)
+@router.post("/discente/", response_model=schemas.Discente)
 def create_discente(discente: schemas.DiscenteCreate, db: Session = Depends(get_db)):
     db_discente = models.Discente(**discente.dict())
     db.add(db_discente)

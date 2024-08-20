@@ -12,7 +12,7 @@ def get_db():
     finally:
         db.close()
 
-@router.post("/", response_model=schemas.Docente)
+@router.post("/docente/", response_model=schemas.Docente)
 def create_docente(docente: schemas.DocenteCreate, db: Session = Depends(get_db)):
     db_docente = models.Docente(**docente.dict())
     db.add(db_docente)

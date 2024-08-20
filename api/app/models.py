@@ -106,7 +106,7 @@ class Laboratorio(Base):
     __tablename__ = 'Laboratorio'
     id_lab = Column(Integer, primary_key=True, index=True)
     status = Column(String(255))
-
+    id_usuario = Column(Integer, ForeignKey('Usuario.id_usuario'))
     usuario = relationship("Usuario", back_populates="laboratorios")
     chamados = relationship("Chamado", back_populates="laboratorio")
     agendamentos = relationship("Agendamento", back_populates="laboratorio")

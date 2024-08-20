@@ -12,7 +12,7 @@ def get_db():
     finally:
         db.close()
 
-@router.post("/visualiza", response_model=schemas.Visualiza)
+@router.post("/visualiza/", response_model=schemas.Visualiza)
 def create_visualiza(visualiza: schemas.VisualizaCreate, db: Session = Depends(get_db)):
     db_visualiza = models.Visualiza(**visualiza.dict())
     db.add(db_visualiza)
