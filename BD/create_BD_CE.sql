@@ -100,8 +100,8 @@ CREATE TABLE Chamado (
 
 CREATE TABLE Agendamento (
     id_reserva INT AUTO_INCREMENT PRIMARY KEY,
-    data DATE,
-    horario TIME,
+    data VARCHAR(255),
+    horario time,
     quant_alunos INT,
     observacao VARCHAR(255),
     id_usuario INT,

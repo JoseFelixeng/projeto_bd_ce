@@ -20,14 +20,14 @@ def create_visualiza(visualiza: schemas.VisualizaCreate, db: Session = Depends(g
     db.refresh(db_visualiza)
     return db_visualiza
 
-@router.get("/{visualiza_id}", response_model=schemas.Visualiza)
+@router.get("/visualiza/{visualiza_id}", response_model=schemas.Visualiza)
 def read_visualiza(visualiza_id: int, db: Session = Depends(get_db)):
     db_visualiza = db.query(models.Visualiza).filter(models.Visualiza.id_horarios == visualiza_id).first()
     if db_visualiza is None:
         raise HTTPException(status_code=404, detail="Visualiza not found")
     return db_visualiza
 
-@router.put("/{visualiza_id}", response_model=schemas.Visualiza)
+@router.put("/visualiza/{visualiza_id}", response_model=schemas.Visualiza)
 def update_visualiza(visualiza_id: int, visualiza: schemas.VisualizaCreate, db: Session = Depends(get_db)):
     db_visualiza = db.query(models.Visualiza).filter(models.Visualiza.id_horarios == visualiza_id).first()
     if db_visualiza is None:
@@ -38,7 +38,7 @@ def update_visualiza(visualiza_id: int, visualiza: schemas.VisualizaCreate, db: 
     db.refresh(db_visualiza)
     return db_visualiza
 
-@router.delete("/{visualiza_id}", response_model=schemas.Visualiza)
+@router.delete("/visualiza/{visualiza_id}", response_model=schemas.Visualiza)
 def delete_visualiza(visualiza_id: int, db: Session = Depends(get_db)):
     db_visualiza = db.query(models.Visualiza).filter(models.Visualiza.id_horarios == visualiza_id).first()
     if db_visualiza is None:

@@ -12,7 +12,7 @@ def get_db():
     finally:
         db.close()
 
-@router.post("/agenda", response_model=schemas.Agenda)
+@router.post("/agenda/", response_model=schemas.Agenda)
 def create_agenda(agenda: schemas.AgendaCreate, db: Session = Depends(get_db)):
     db_agenda = models.Agenda(**agenda.dict())
     db.add(db_agenda)
@@ -20,14 +20,14 @@ def create_agenda(agenda: schemas.AgendaCreate, db: Session = Depends(get_db)):
     db.refresh(db_agenda)
     return db_agenda
 
-@router.get("/{agenda_id}", response_model=schemas.Agenda)
+@router.get("/Agenda/{agenda_id}", response_model=schemas.Agenda)
 def read_agenda(agenda_id: int, db: Session = Depends(get_db)):
     db_agenda = db.query(models.Agenda).filter(models.Agenda.id_agenda == agenda_id).first()
     if db_agenda is None:
         raise HTTPException(status_code=404, detail="Agenda not found")
     return db_agenda
 
-@router.put("/{agenda_id}", response_model=schemas.Agenda)
+@router.put("/Agenda/{agenda_id}", response_model=schemas.Agenda)
 def update_agenda(agenda_id: int, agenda: schemas.AgendaCreate, db: Session = Depends(get_db)):
     db_agenda = db.query(models.Agenda).filter(models.Agenda.id_agenda == agenda_id).first()
     if db_agenda is None:
@@ -38,7 +38,7 @@ def update_agenda(agenda_id: int, agenda: schemas.AgendaCreate, db: Session = De
     db.refresh(db_agenda)
     return db_agenda
 
-@router.delete("/{agenda_id}", response_model=schemas.Agenda)
+@router.delete("/Agenda/{agenda_id}", response_model=schemas.Agenda)
 def delete_agenda(agenda_id: int, db: Session = Depends(get_db)):
     db_agenda = db.query(models.Agenda).filter(models.Agenda.id_agenda == agenda_id).first()
     if db_agenda is None:

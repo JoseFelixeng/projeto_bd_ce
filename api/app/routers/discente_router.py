@@ -20,14 +20,14 @@ def create_discente(discente: schemas.DiscenteCreate, db: Session = Depends(get_
     db.refresh(db_discente)
     return db_discente
 
-@router.get("/{discente_id}", response_model=schemas.Discente)
+@router.get("/discente/{discente_id}", response_model=schemas.Discente)
 def read_discente(discente_id: int, db: Session = Depends(get_db)):
     db_discente = db.query(models.Discente).filter(models.Discente.id_discente == discente_id).first()
     if db_discente is None:
         raise HTTPException(status_code=404, detail="Discente not found")
     return db_discente
 
-@router.put("/{discente_id}", response_model=schemas.Discente)
+@router.put("/discente/{discente_id}", response_model=schemas.Discente)
 def update_discente(discente_id: int, discente: schemas.DiscenteCreate, db: Session = Depends(get_db)):
     db_discente = db.query(models.Discente).filter(models.Discente.id_discente == discente_id).first()
     if db_discente is None:
@@ -38,7 +38,7 @@ def update_discente(discente_id: int, discente: schemas.DiscenteCreate, db: Sess
     db.refresh(db_discente)
     return db_discente
 
-@router.delete("/{discente_id}", response_model=schemas.Discente)
+@router.delete("/discente/{discente_id}", response_model=schemas.Discente)
 def delete_discente(discente_id: int, db: Session = Depends(get_db)):
     db_discente = db.query(models.Discente).filter(models.Discente.id_discente == discente_id).first()
     if db_discente is None:

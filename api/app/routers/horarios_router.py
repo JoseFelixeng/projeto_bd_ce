@@ -12,7 +12,7 @@ def get_db():
     finally:
         db.close()
 
-@router.post("/horarios", response_model=schemas.Horarios)
+@router.post("/horarios/", response_model=schemas.Horarios)
 def create_horarios(horarios: schemas.HorariosCreate, db: Session = Depends(get_db)):
     db_horarios = models.Horarios(**horarios.dict())
     db.add(db_horarios)
@@ -20,14 +20,14 @@ def create_horarios(horarios: schemas.HorariosCreate, db: Session = Depends(get_
     db.refresh(db_horarios)
     return db_horarios
 
-@router.get("/{horarios_id}", response_model=schemas.Horarios)
+@router.get("/horarios/{horarios_id}", response_model=schemas.Horarios)
 def read_horarios(horarios_id: int, db: Session = Depends(get_db)):
     db_horarios = db.query(models.Horarios).filter(models.Horarios.id_horarios == horarios_id).first()
     if db_horarios is None:
         raise HTTPException(status_code=404, detail="Horarios not found")
     return db_horarios
 
-@router.put("/{horarios_id}", response_model=schemas.Horarios)
+@router.put("/horarios/{horarios_id}", response_model=schemas.Horarios)
 def update_horarios(horarios_id: int, horarios: schemas.HorariosCreate, db: Session = Depends(get_db)):
     db_horarios = db.query(models.Horarios).filter(models.Horarios.id_horarios == horarios_id).first()
     if db_horarios is None:
@@ -38,7 +38,7 @@ def update_horarios(horarios_id: int, horarios: schemas.HorariosCreate, db: Sess
     db.refresh(db_horarios)
     return db_horarios
 
-@router.delete("/{horarios_id}", response_model=schemas.Horarios)
+@router.delete("/horarios/{horarios_id}", response_model=schemas.Horarios)
 def delete_horarios(horarios_id: int, db: Session = Depends(get_db)):
     db_horarios = db.query(models.Horarios).filter(models.Horarios.id_horarios == horarios_id).first()
     if db_horarios is None:
