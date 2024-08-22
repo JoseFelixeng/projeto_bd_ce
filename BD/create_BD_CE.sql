@@ -5,42 +5,45 @@ USE projetoBD;
 CREATE TABLE Usuario (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255),
-    matricula VARCHAR(255) UNIQUE,
-    senha VARCHAR(255)
+    matricula BIGINT,  -- Aumentado para suportar 10 dígitos
+    senha VARCHAR(255),
+    id_docente INT,
+    id_tecnico INT,
+    id_discente INT
 );
 
 CREATE TABLE Docente (
     id_docente INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255),
-    matricula INT UNIQUE,
+    matricula BIGINT,  -- Aumentado para suportar 10 dígitos
     disciplina VARCHAR(255),
     departamento VARCHAR(255),
     id_usuario INT,
-    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario) ON DELETE CASCADE
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
 );
 
 CREATE TABLE Tecnico (
     id_tecnico INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255),
-    matricula INT UNIQUE,
+    matricula BIGINT,  -- Aumentado para suportar 10 dígitos
     id_usuario INT,
-    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario) ON DELETE CASCADE
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
 );
 
 CREATE TABLE Discente (
     id_discente INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255),
-    matricula INT UNIQUE,
+    matricula BIGINT,  -- Aumentado para suportar 10 dígitos
     id_usuario INT,
-    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario) ON DELETE CASCADE
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
 );
 
 CREATE TABLE Administrativo (
     id_adm INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255),
-    matricula INT UNIQUE,
+    matricula BIGINT,  -- Aumentado para suportar 10 dígitos
     id_usuario INT,
-    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario) ON DELETE CASCADE
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
 );
 
 CREATE TABLE Salas (
@@ -63,9 +66,9 @@ CREATE TABLE Horarios (
     id_usuario INT,
     id_agenda INT,
     id_sala INT,
-    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario) ON DELETE CASCADE,
-    FOREIGN KEY (id_agenda) REFERENCES Agenda(id_agenda) ON DELETE CASCADE,
-    FOREIGN KEY (id_sala) REFERENCES Salas(id_sala) ON DELETE CASCADE
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario),
+    FOREIGN KEY (id_agenda) REFERENCES Agenda(id_agenda),
+    FOREIGN KEY (id_sala) REFERENCES Salas(id_sala)
 );
 
 CREATE TABLE Visualiza (
@@ -74,17 +77,20 @@ CREATE TABLE Visualiza (
     id_tecnico INT,
     id_horarios INT,
     id_adm INT,
-    FOREIGN KEY (id_docente) REFERENCES Docente(id_docente) ON DELETE CASCADE,
-    FOREIGN KEY (id_discente) REFERENCES Discente(id_discente) ON DELETE CASCADE,
-    FOREIGN KEY (id_tecnico) REFERENCES Tecnico(id_tecnico) ON DELETE CASCADE,
-    FOREIGN KEY (id_horarios) REFERENCES Horarios(id_horarios) ON DELETE CASCADE,
-    FOREIGN KEY (id_adm) REFERENCES Administrativo(id_adm) ON DELETE CASCADE,
-    PRIMARY KEY (id_docente, id_discente, id_tecnico, id_horarios, id_adm)
+    FOREIGN KEY (id_docente) REFERENCES Docente(id_docente),
+    FOREIGN KEY (id_discente) REFERENCES Discente(id_discente),
+    FOREIGN KEY (id_tecnico) REFERENCES Tecnico(id_tecnico),
+    FOREIGN KEY (id_horarios) REFERENCES Horarios(id_horarios),
+    FOREIGN KEY (id_adm) REFERENCES Administrativo(id_adm)
 );
 
 CREATE TABLE Laboratorio (
     id_lab INT AUTO_INCREMENT PRIMARY KEY,
-    status VARCHAR(255)
+    status VARCHAR(255),
+    id_reserva INT,
+    id_chamado INT,
+    id_usuario INT,
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
 );
 
 CREATE TABLE Chamado (
@@ -94,34 +100,32 @@ CREATE TABLE Chamado (
     usado_equi VARCHAR(255),
     observacao VARCHAR(255),
     id_usuario INT,
-    FOREIGN KEY (id_lab) REFERENCES Laboratorio(id_lab) ON DELETE SET NULL,
-    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario) ON DELETE CASCADE
+    FOREIGN KEY (id_lab) REFERENCES Laboratorio(id_lab),
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
 );
 
 CREATE TABLE Agendamento (
     id_reserva INT AUTO_INCREMENT PRIMARY KEY,
-    data VARCHAR(255),
-    horario time,
+    data DATE,
+    horario TIME,
     quant_alunos INT,
     observacao VARCHAR(255),
     id_usuario INT,
     id_lab INT,
-    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario) ON DELETE CASCADE,
-    FOREIGN KEY (id_lab) REFERENCES Laboratorio(id_lab) ON DELETE SET NULL
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario),
+    FOREIGN KEY (id_lab) REFERENCES Laboratorio(id_lab)
 );
 
 CREATE TABLE Abre_chamado (
     id_docente INT,
     id_lab INT,
-    PRIMARY KEY (id_docente, id_lab),
-    FOREIGN KEY (id_docente) REFERENCES Docente(id_docente) ON DELETE CASCADE,
-    FOREIGN KEY (id_lab) REFERENCES Laboratorio(id_lab) ON DELETE CASCADE
+    FOREIGN KEY (id_docente) REFERENCES Docente(id_docente),
+    FOREIGN KEY (id_lab) REFERENCES Laboratorio(id_lab)
 );
 
 CREATE TABLE Gerencia (
     id_tecnico INT,
     id_lab INT,
-    PRIMARY KEY (id_tecnico, id_lab),
-    FOREIGN KEY (id_tecnico) REFERENCES Tecnico(id_tecnico) ON DELETE CASCADE,
-    FOREIGN KEY (id_lab) REFERENCES Laboratorio(id_lab) ON DELETE CASCADE
+    FOREIGN KEY (id_tecnico) REFERENCES Tecnico(id_tecnico),
+    FOREIGN KEY (id_lab) REFERENCES Laboratorio(id_lab)
 );

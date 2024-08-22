@@ -15,7 +15,7 @@ class Usuario(UsuarioBase):
     agendamentos: Optional[List['Agendamento']] = None
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class DocenteBase(BaseModel):
     nome: str
@@ -30,7 +30,7 @@ class Docente(DocenteBase):
     id_docente: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class TecnicoBase(BaseModel):
     nome: str
@@ -43,7 +43,7 @@ class Tecnico(TecnicoBase):
     id_tecnico: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class DiscenteBase(BaseModel):
     nome: str
@@ -56,7 +56,7 @@ class Discente(DiscenteBase):
     id_discente: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class AdministrativoBase(BaseModel):
     nome: str
@@ -69,7 +69,7 @@ class Administrativo(AdministrativoBase):
     id_adm: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class SalasBase(BaseModel):
     sala: int
@@ -83,7 +83,7 @@ class Salas(SalasBase):
     id_sala: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class AgendaBase(BaseModel):
     nome: str
@@ -98,7 +98,7 @@ class Agenda(AgendaBase):
     id_agenda: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class HorariosBase(BaseModel):
     id_usuario: int
@@ -112,7 +112,7 @@ class Horarios(HorariosBase):
     id_horarios: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class VisualizaBase(BaseModel):
     id_docente: Optional[int]
@@ -140,7 +140,7 @@ class Laboratorio(LaboratorioBase):
     id_lab: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class ChamadoBase(BaseModel):
     status: str
@@ -156,7 +156,7 @@ class Chamado(ChamadoBase):
     id_chamado: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class AgendamentoBase(BaseModel):
     data: str
@@ -173,7 +173,7 @@ class Agendamento(AgendamentoBase):
     id_reserva: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class AbreChamadoBase(BaseModel):
     id_docente: int
@@ -187,7 +187,7 @@ class AbreChamado(AbreChamadoBase):
 
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class GerenciaBase(BaseModel):
     id_tecnico: int

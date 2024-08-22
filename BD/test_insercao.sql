@@ -1,76 +1,41 @@
--- Buscar todos os usuários
+-- Visualizar dados na tabela Usuario
 SELECT * FROM Usuario;
 
--- Buscar todos os docentes
+-- Visualizar dados na tabela Docente
 SELECT * FROM Docente;
 
--- Buscar todos os técnicos
+-- Visualizar dados na tabela Tecnico
 SELECT * FROM Tecnico;
 
--- Buscar todos os discentes
+-- Visualizar dados na tabela Discente
 SELECT * FROM Discente;
 
--- Buscar todos os administrativos
+-- Visualizar dados na tabela Administrativo
 SELECT * FROM Administrativo;
 
--- Buscar todas as salas
+-- Visualizar dados na tabela Salas
 SELECT * FROM Salas;
 
--- Buscar todas as agendas
+-- Visualizar dados na tabela Agenda
 SELECT * FROM Agenda;
 
--- Buscar todos os horários
+-- Visualizar dados na tabela Horarios
 SELECT * FROM Horarios;
 
--- Buscar todas as visualizações
+-- Visualizar dados na tabela Visualiza
 SELECT * FROM Visualiza;
 
--- Buscar todos os laboratórios
+-- Visualizar dados na tabela Laboratorio
 SELECT * FROM Laboratorio;
 
--- Buscar todos os chamados
+-- Visualizar dados na tabela Chamado
 SELECT * FROM Chamado;
 
--- Buscar todos os agendamentos
+-- Visualizar dados na tabela Agendamento
 SELECT * FROM Agendamento;
 
--- Buscar todos os chamados abertos pelos docentes
+-- Visualizar dados na tabela Abre_chamado
 SELECT * FROM Abre_chamado;
 
--- Buscar todas as gerências de laboratórios por técnicos
-SELECT * FROM Gerencia;
-
-
--- Buscar detalhes do docente Maria Souza, incluindo informações do usuário
-SELECT d.*, u.nome, u.matricula, u.senha 
-FROM Docente d
-JOIN Usuario u ON d.id_usuario = u.id_usuario
-WHERE d.nome = 'Maria Souza';
-
--- Mostrar todas as tabelas e suas colunas
-SELECT TABLE_NAME, COLUMN_NAME 
-FROM INFORMATION_SCHEMA.COLUMNS 
-WHERE TABLE_SCHEMA = 'projetoBD';
-
--- Exibir a contagem de registros em cada tabela
-SELECT 
-    TABLE_NAME, 
-    TABLE_ROWS 
-FROM INFORMATION_SCHEMA.TABLES 
-WHERE TABLE_SCHEMA = 'projetoBD';
-
--- Exibir todos os dados de todas as tabelas (executar individualmente conforme necessário)
-SELECT * FROM Usuario;
-SELECT * FROM Docente;
-SELECT * FROM Tecnico;
-SELECT * FROM Discente;
-SELECT * FROM Administrativo;
-SELECT * FROM Salas;
-SELECT * FROM Agenda;
-SELECT * FROM Horarios;
-SELECT * FROM Visualiza;
-SELECT * FROM Laboratorio;
-SELECT * FROM Chamado;
-SELECT * FROM Agendamento;
-SELECT * FROM Abre_chamado;
+-- Visualizar dados na tabela Gerencia
 SELECT * FROM Gerencia;
