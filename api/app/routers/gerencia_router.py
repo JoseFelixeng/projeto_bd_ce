@@ -21,14 +21,14 @@ def create_gerencia(gerencia: schemas.GerenciaCreate, db: Session = Depends(get_
 
 @router.get("/gerencia/{gerencia_id}", response_model=schemas.Gerencia)
 def read_gerencia(gerencia_id: int, db: Session = Depends(get_db)):
-    db_gerencia = db.query(models.Gerencia).filter(models.Gerencia.id_docente == gerencia_id).first()
+    db_gerencia = db.query(models.Gerencia).filter(models.Gerencia.id_tecnico== gerencia_id).first()
     if db_gerencia is None:
         raise HTTPException(status_code=404, detail="Gerencia not found")
     return db_gerencia
 
 @router.put("/gerencia/{gerencia_id}", response_model=schemas.Gerencia)
 def update_gerencia(gerencia_id: int, gerencia: schemas.GerenciaCreate, db: Session = Depends(get_db)):
-    db_gerencia = db.query(models.Gerencia).filter(models.Gerencia.id_docente == gerencia_id).first()
+    db_gerencia = db.query(models.Gerencia).filter(models.Gerencia.id_tecnico == gerencia_id).first()
     if db_gerencia is None:
         raise HTTPException(status_code=404, detail="Gerencia not found")
     for key, value in gerencia.dict().items():
@@ -39,7 +39,7 @@ def update_gerencia(gerencia_id: int, gerencia: schemas.GerenciaCreate, db: Sess
 
 @router.delete("/gerencia/{gerencia_id}", response_model=schemas.Gerencia)
 def delete_gerencia(gerencia_id: int, db: Session = Depends(get_db)):
-    db_gerencia = db.query(models.Gerencia).filter(models.Gerencia.id_docente == gerencia_id).first()
+    db_gerencia = db.query(models.Gerencia).filter(models.Gerencia.id_tecnico == gerencia_id).first()
     if db_gerencia is None:
         raise HTTPException(status_code=404, detail="Gerencia not found")
     db.delete(db_gerencia)

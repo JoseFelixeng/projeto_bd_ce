@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from typing import Optional, List
+from datetime import date, time
 
 class UsuarioBase(BaseModel):
     nome: str
@@ -127,6 +128,9 @@ class VisualizaCreate(VisualizaBase):
 class Visualiza(VisualizaBase):
     pass
 
+    class Config:
+        from_attributes = True
+
 class LaboratorioBase(BaseModel):
     status: str
     id_reserva: Optional[int]
@@ -159,8 +163,8 @@ class Chamado(ChamadoBase):
         from_attributes = True
 
 class AgendamentoBase(BaseModel):
-    data: str
-    horario: str
+    data: date  # Usando 'date' para a data
+    horario: time  # Usando 'time' para o horário
     quant_alunos: int
     observacao: str
     id_usuario: int
@@ -185,7 +189,6 @@ class AbreChamadoCreate(AbreChamadoBase):
 class AbreChamado(AbreChamadoBase):
     pass
 
-
     class Config:
         from_attributes = True
 
@@ -198,3 +201,6 @@ class GerenciaCreate(GerenciaBase):
 
 class Gerencia(GerenciaBase):
     pass
+
+    class Config:
+        from_attributes = True

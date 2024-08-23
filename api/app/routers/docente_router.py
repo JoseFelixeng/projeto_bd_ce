@@ -20,14 +20,14 @@ def create_docente(docente: schemas.DocenteCreate, db: Session = Depends(get_db)
     db.refresh(db_docente)
     return db_docente
 
-@router.get("/{docente_id}", response_model=schemas.Docente)
+@router.get("/docente/{docente_id}", response_model=schemas.Docente)
 def read_docente(docente_id: int, db: Session = Depends(get_db)):
     db_docente = db.query(models.Docente).filter(models.Docente.id_docente == docente_id).first()
     if db_docente is None:
         raise HTTPException(status_code=404, detail="Docente not found")
     return db_docente
 
-@router.put("/{docente_id}", response_model=schemas.Docente)
+@router.put("/docente/{docente_id}", response_model=schemas.Docente)
 def update_docente(docente_id: int, docente: schemas.DocenteCreate, db: Session = Depends(get_db)):
     db_docente = db.query(models.Docente).filter(models.Docente.id_docente == docente_id).first()
     if db_docente is None:
@@ -38,7 +38,7 @@ def update_docente(docente_id: int, docente: schemas.DocenteCreate, db: Session 
     db.refresh(db_docente)
     return db_docente
 
-@router.delete("/{docente_id}", response_model=schemas.Docente)
+@router.delete("/docente/{docente_id}", response_model=schemas.Docente)
 def delete_docente(docente_id: int, db: Session = Depends(get_db)):
     db_docente = db.query(models.Docente).filter(models.Docente.id_docente == docente_id).first()
     if db_docente is None:

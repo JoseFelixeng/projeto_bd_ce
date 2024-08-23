@@ -5,7 +5,7 @@ USE projetoBD;
 CREATE TABLE Usuario (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255),
-    matricula BIGINT,  -- Aumentado para suportar 10 dígitos
+    matricula BIGINT,
     senha VARCHAR(255),
     id_docente INT,
     id_tecnico INT,
@@ -15,7 +15,7 @@ CREATE TABLE Usuario (
 CREATE TABLE Docente (
     id_docente INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255),
-    matricula BIGINT,  -- Aumentado para suportar 10 dígitos
+    matricula BIGINT,
     disciplina VARCHAR(255),
     departamento VARCHAR(255),
     id_usuario INT,
@@ -25,7 +25,7 @@ CREATE TABLE Docente (
 CREATE TABLE Tecnico (
     id_tecnico INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255),
-    matricula BIGINT,  -- Aumentado para suportar 10 dígitos
+    matricula BIGINT,
     id_usuario INT,
     FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
 );
@@ -33,7 +33,7 @@ CREATE TABLE Tecnico (
 CREATE TABLE Discente (
     id_discente INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255),
-    matricula BIGINT,  -- Aumentado para suportar 10 dígitos
+    matricula BIGINT,
     id_usuario INT,
     FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
 );
@@ -41,7 +41,7 @@ CREATE TABLE Discente (
 CREATE TABLE Administrativo (
     id_adm INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255),
-    matricula BIGINT,  -- Aumentado para suportar 10 dígitos
+    matricula BIGINT,
     id_usuario INT,
     FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
 );
