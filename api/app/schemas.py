@@ -8,9 +8,11 @@ class UsuarioBase(BaseModel):
 
 class UsuarioCreate(UsuarioBase):
     senha: str
+    nivel_permissao: Optional[int] = 1 
 
 class Usuario(UsuarioBase):
     id_usuario: int
+    nivel_permissao: int
     laboratorios: Optional[List['Laboratorio']] = None
     chamados: Optional[List['Chamado']] = None
     agendamentos: Optional[List['Agendamento']] = None
@@ -204,3 +206,29 @@ class Gerencia(GerenciaBase):
 
     class Config:
         from_attributes = True
+
+class RoomBase(BaseModel):
+    horario: str
+    id_usuario: int
+
+class RoomCreate(BaseModel):
+    id_room: int
+    horario: str
+    id_usuario: int
+
+class Room(RoomBase):
+    id_room: int
+
+    class Config:
+        from_attributes = True
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+class TokenData(BaseModel):
+    username: str | None = None
+
+class UsuarioLogin(BaseModel):
+    matricula: int
+    senha: str

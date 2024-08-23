@@ -2,7 +2,7 @@ from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Date,
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
 
-DATABASE_URL = "mariadb+mariadbconnector://root:rasengan@localhost/projetoBD"
+DATABASE_URL = "mariadb+mariadbconnector://root:root@localhost:3309/projetoBD"
 
 engine = create_engine(DATABASE_URL, echo=True)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -12,9 +12,10 @@ Base = declarative_base()
 class Usuario(Base):
     __tablename__ = 'Usuario'
     id_usuario = Column(Integer, primary_key=True, index=True)
-    nome = Column(String(255))
-    matricula = Column(Integer, unique=True)
-    senha = Column(String(255))
+    nome = Column(String, nullable=False)
+    matricula = Column(Integer, unique=True, nullable=False)
+    senha = Column(String, nullable=False)
+    nivel_permissao = Column(Integer, default=1)
 
     docente = relationship("Docente", uselist=False, back_populates="usuario")
     tecnico = relationship("Tecnico", uselist=False, back_populates="usuario")
@@ -151,6 +152,16 @@ class Gerencia(Base):
 
     tecnico = relationship("Tecnico")
     laboratorio = relationship("Laboratorio")
+
+class Room(Base):
+    __tablename__ = 'room'
+    id_room = Column(Integer, primary_key=True, index=True)
+    horario = Column(String, nullable=False)
+    id_usuario = Column(Integer, ForeignKey('Usuario.id_usuario'), nullable=False)
+
+    usuario = relationship("Usuario", back_populates="rooms")
+
+Usuario.rooms = relationship("Room", back_populates="usuario")
 
 # Criação das tabelas no banco de dados
 Base.metadata.create_all(bind=engine)
