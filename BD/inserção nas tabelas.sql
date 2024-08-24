@@ -53,3 +53,9 @@ INSERT INTO Abre_chamado (id_docente, id_lab) VALUES (2, 2);
 -- Inserções na tabela Gerencia
 INSERT INTO Gerencia (id_tecnico, id_lab) VALUES (1, 1);
 INSERT INTO Gerencia (id_tecnico, id_lab) VALUES (2, 2);
+
+--Inserindo 4 entradas fixas para as rooms 
+INSERT INTO room(id_room, horario, id_usuario) VALUES (1,'00:00:00', NULL),
+INSERT INTO room(id_room, horario, id_usuario) VALUES (2,'00:00:00', NULL),
+INSERT INTO room(id_room, horario, id_usuario) VALUES (3,'00:00:00', NULL),
+INSERT INTO room(id_room, horario, id_usuario) VALUES (4,'00:00:00', NULL),

@@ -129,3 +129,10 @@ CREATE TABLE Gerencia (
     FOREIGN KEY (id_tecnico) REFERENCES Tecnico(id_tecnico),
     FOREIGN KEY (id_lab) REFERENCES Laboratorio(id_lab)
 );
+
+CREATE TABLE room(
+    id_room PRIMARY KEY,
+    horario TIME NOT NULL,
+    id_usuario INT NOT NULL,
+    FOREIGN KEY(id_usuario) REFERENCES Usuario(id_usuario)
+);
