@@ -39,3 +39,27 @@ SELECT * FROM Abre_chamado;
 
 -- Visualizar dados na tabela Gerencia
 SELECT * FROM Gerencia;
+
+-- Visualizar usando uma agregação de tabelas 
+SELECT 'Docente' AS tipo_usuario, COUNT(id_docente) AS total
+FROM Docente
+UNION ALL
+SELECT 'Técnico' AS tipo_usuario, COUNT(id_tecnico) AS total
+FROM Tecnico
+UNION ALL
+SELECT 'Discente' AS tipo_usuario, COUNT(id_discente) AS total
+FROM Discente
+UNION ALL
+SELECT 'Administrativo' AS tipo_usuario, COUNT(id_adm) AS total
+FROM Administrativo;
+
+
+-- Visualizar usando uma busca inteligente(index) do nome
+
+SELECT id_usuario, nome, matricula
+FROM Usuario
+WHERE nome = 'João Silva';
+
+SELECT id_usuario, nome, matricula
+FROM Usuario
+WHERE nome = 'Maria Oliveira';
