@@ -2,7 +2,7 @@ from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Date,
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
 
-DATABASE_URL = "mariadb+mariadbconnector://root:root@localhost:3309/projetoBD"
+DATABASE_URL = "mariadb+mariadbconnector://root:rasengan@localhost/projetoBD"
 
 engine = create_engine(DATABASE_URL, echo=True)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -28,7 +28,7 @@ class Usuario(Base):
 class Docente(Base):
     __tablename__ = 'Docente'
     id_docente = Column(Integer, primary_key=True, index=True)
-    nome = Column(String(255))
+    nome = Column(String(255), index=True)
     matricula = Column(Integer, unique=True)
     disciplina = Column(String(255))
     departamento = Column(String(255))
@@ -66,7 +66,7 @@ class Administrativo(Base):
 class Salas(Base):
     __tablename__ = 'Salas'
     id_sala = Column(Integer, primary_key=True, index=True)
-    sala = Column(Integer)
+    sala = Column(Integer, index=True)
     laboratorio = Column(String(255))
     auditorio = Column(String(255))
 

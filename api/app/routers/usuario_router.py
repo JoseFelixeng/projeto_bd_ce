@@ -108,3 +108,6 @@ def create_usuario(usuario: schemas.UsuarioCreate, db: Session = Depends(get_db)
 @router.get("/usuario/me", response_model=schemas.Usuario)
 def read_users_me(current_user: schemas.Usuario = Depends(get_current_user)):
     return current_user
+
+
+

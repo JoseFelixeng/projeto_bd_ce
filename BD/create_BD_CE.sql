@@ -131,7 +131,7 @@ CREATE TABLE Gerencia (
 );
 
 CREATE TABLE room(
-    id_room PRIMARY KEY,
+    id_room INT PRIMARY KEY,
     horario TIME NOT NULL,
     id_usuario INT NOT NULL,
     FOREIGN KEY(id_usuario) REFERENCES Usuario(id_usuario)

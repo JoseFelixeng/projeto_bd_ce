@@ -27,6 +27,14 @@ def read_discente(discente_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Discente not found")
     return db_discente
 
+#Procurando aluno pelo nome
+@router.get("/discentes/")
+def search_docente_by_name(nome: str, db: Session = Depends(get_db)):
+    discente = db.query(models.Discente).filter(models.Discente.nome == nome).all()
+    if not discente:
+        raise HTTPException(status_code=404, detail="Discente não encontrado não encontrado")
+    return discente
+
 @router.put("/discente/{discente_id}", response_model=schemas.Discente)
 def update_discente(discente_id: int, discente: schemas.DiscenteCreate, db: Session = Depends(get_db)):
     db_discente = db.query(models.Discente).filter(models.Discente.id_discente == discente_id).first()

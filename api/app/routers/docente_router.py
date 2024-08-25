@@ -27,6 +27,14 @@ def read_docente(docente_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Docente not found")
     return db_docente
 
+# Fazendo Busca pelo index, nome no banco de dados 
+@router.get("/docentes/")
+def search_docente_by_name(nome: str, db: Session = Depends(get_db)):
+    docentes = db.query(models.Docente).filter(models.Docente.nome == nome).all()
+    if not docentes:
+        raise HTTPException(status_code=404, detail="Docente não encontrado")
+    return docentes
+
 @router.put("/docente/{docente_id}", response_model=schemas.Docente)
 def update_docente(docente_id: int, docente: schemas.DocenteCreate, db: Session = Depends(get_db)):
     db_docente = db.query(models.Docente).filter(models.Docente.id_docente == docente_id).first()

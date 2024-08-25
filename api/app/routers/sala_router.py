@@ -27,6 +27,7 @@ def read_salas(sala_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Salas not found")
     return db_salas
 
+
 @router.put("/sala/{sala_id}", response_model=schemas.Salas)
 def update_salas(sala_id: int, salas: schemas.SalasCreate, db: Session = Depends(get_db)):
     db_salas = db.query(models.Salas).filter(models.Salas.id_sala == sala_id).first()
