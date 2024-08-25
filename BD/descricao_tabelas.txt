@@ -1,0 +1,37 @@
+Funções das tabelas: 
+
+	- Usuário:
+		Deve conter todos os usuários cadastrados
+	- Docentes: 
+		Apartir dos usuários cadastrados os usuários que forem professores serão incluídos a essa tabela.
+	- Discentes: 
+		Apartir dos usuários cadastrados os usuários que forem alunos serão incluídos a essa tabela.
+	- Tecnico: 
+		Apartir dos usuários cadastrados os usuários que forem Tecnico serão incluídos a essa tabela.
+	- Administrativo: 
+		Apartir dos usuários cadastrados os usuários que forem administradores serão incluídos a essa tabela.
+
+	- Salas: 
+		Será cadastrados os tipos de espaços físicos disponíveis.
+
+	- Agenda: 
+		Será usado para armazenar os agendamentos para as aula que serão dadas no setor.
+	- Horários: 
+		Será usado para cadastrar as aulas que serão dadas nos espaços físicos.
+	 - Visualiza: 
+		Será usada para gerenciar as gerenciar as permissões dos usuários em vê informações dos agendamentos das aulas.
+
+	- Laboratório: 
+		Será usado para cadastrar as aulas e gerenciar as atividades do laboratório de informática e de manutenção e TI do prédio.
+	- Chamado: 
+		Será usado para cadastrar as atividades que demandam necessidades de TI no setor
+	- Agendamento:
+	Usada espeficimanente para marca as aulas que serão feitas no laboratório de informática
+	- Abre_chamado: 
+	Usada para visualizar o usuário que abriu o chamado.
+	- gerencia: 
+	Usada para garantir que o usuário que irá fazer as atualizações que serão feitas na parte de TI seja apenas os cadastrados como técnico.
+	- room :
+	Usada para cadastrar os horários das aulas
+	
+	
