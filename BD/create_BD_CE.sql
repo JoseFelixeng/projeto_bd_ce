@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS projetoBD;
-USE projetoBD;
+CREATE DATABASE IF NOT EXISTS projeto_BD;
+USE projeto_BD;
 
 -- Criação das tabelas
 CREATE TABLE Usuario (
