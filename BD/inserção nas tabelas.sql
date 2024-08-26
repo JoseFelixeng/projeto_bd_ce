@@ -6,6 +6,11 @@ INSERT INTO Usuario (nome, matricula, senha) VALUES('patricia', 34567892, 's5454
 INSERT INTO Usuario (nome, matricula, senha) VALUES('José Felix', 1234567890, 's54549348');
 INSERT INTO Usuario (nome, matricula, senha) VALUES('João Mendes', 4567890123, '9876324132');
 
+-- Criando um index em nome
+CREATE INDEX i ON Usuario (nome);
+
+SHOW INDEX FROM Usuario;
+
 SELECT * FROM usuario;
 
 -- Atualizações nas tabelas
